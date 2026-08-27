@@ -23,7 +23,10 @@
 		705B905F321974480B87E143 /* QdrantVectorMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6F64268C464DF40E38FAC /* QdrantVectorMemoryStore.swift */; };
 		719DD048FB21499CCABD4D25 /* AppleTextEmbedder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F42A7E71E9A466BC60ED47D /* AppleTextEmbedder.swift */; };
 		71AF8F17DE1E4F871F44CF26 /* SystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4496F96B7BED02051C495BA /* SystemView.swift */; };
+		76E2CFC1698ECE457D2CBB1C /* MemoryScanConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849A8D4E12210A466CAA02F7 /* MemoryScanConfiguration.swift */; };
+		778BBFA409C25E744C7BA607 /* MemoryScanConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A384AE182FEEC0D9C17BE17 /* MemoryScanConfigurationTests.swift */; };
 		7DCE1E1E4BEF79C083609B7A /* EdgeBridge.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C693ED75647B34FACC0D8F /* EdgeBridge.xcframework */; };
+		87E688634035C035F05C020F /* OpenAIResponsesClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2251FF993D521155CCBF1EC /* OpenAIResponsesClientTests.swift */; };
 		95D6A66F10FA200F2C14078D /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201F457886E0368D6F0F3DA5 /* AppModel.swift */; };
 		9E9AA99CC45D852C90341CB4 /* FileVectorMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB9B84064CF60BF7571B72 /* FileVectorMemoryStore.swift */; };
 		B4B7BCB9C6B89DB5E623FDE6 /* VectorMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438AB69F47AEF0C0332E340 /* VectorMath.swift */; };
@@ -55,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A384AE182FEEC0D9C17BE17 /* MemoryScanConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryScanConfigurationTests.swift; sourceTree = "<group>"; };
 		15BB9B84064CF60BF7571B72 /* FileVectorMemoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileVectorMemoryStore.swift; sourceTree = "<group>"; };
 		201F457886E0368D6F0F3DA5 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		2A8EE8ADD1A7818D61CC9553 /* KIOKURelayTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = KIOKURelayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +75,7 @@
 		696E9D0D4E6DD5034BD046B8 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		7438AB69F47AEF0C0332E340 /* VectorMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMath.swift; sourceTree = "<group>"; };
 		831AE7B589156C3C1B925B94 /* KIOKURelay.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = KIOKURelay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		849A8D4E12210A466CAA02F7 /* MemoryScanConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryScanConfiguration.swift; sourceTree = "<group>"; };
 		85C693ED75647B34FACC0D8F /* EdgeBridge.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = EdgeBridge.xcframework; path = EdgeBridge/build/EdgeBridge.xcframework; sourceTree = "<group>"; };
 		8AD6F64268C464DF40E38FAC /* QdrantVectorMemoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QdrantVectorMemoryStore.swift; sourceTree = "<group>"; };
 		8C7818F831EC49E745C5E9DD /* MemoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCard.swift; sourceTree = "<group>"; };
@@ -86,6 +91,7 @@
 		B389C80C5CEA2B91022FBD12 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		B4CC12A5B664E6E85F535DDA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BE02B1DC3F4CCA4719AF8B4E /* Neo4jQueryClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neo4jQueryClient.swift; sourceTree = "<group>"; };
+		C2251FF993D521155CCBF1EC /* OpenAIResponsesClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponsesClientTests.swift; sourceTree = "<group>"; };
 		C2290A8134F5D3FED45C117B /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		C8385525745D0CE47ACAE3C9 /* SearchMemoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMemoriesView.swift; sourceTree = "<group>"; };
 		CB4E2F17A62B13F25E98F6F4 /* MemoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryItem.swift; sourceTree = "<group>"; };
@@ -164,6 +170,7 @@
 			children = (
 				46BA482A71B73C0E7C289A02 /* ImageAnalysis.swift */,
 				CB4E2F17A62B13F25E98F6F4 /* MemoryItem.swift */,
+				849A8D4E12210A466CAA02F7 /* MemoryScanConfiguration.swift */,
 				F05C59CC22BB58E3F1D0FC20 /* ServiceStatus.swift */,
 			);
 			path = Models;
@@ -267,6 +274,8 @@
 		D001EBEC839F50AF92B6119A /* KIOKURelayTests */ = {
 			isa = PBXGroup;
 			children = (
+				0A384AE182FEEC0D9C17BE17 /* MemoryScanConfigurationTests.swift */,
+				C2251FF993D521155CCBF1EC /* OpenAIResponsesClientTests.swift */,
 				32A7077EE7ED20BD074F1F86 /* QdrantVectorMemoryStoreFailureTests.swift */,
 				FA735BAE2DD21779CEDC8515 /* VectorMathTests.swift */,
 			);
@@ -393,6 +402,7 @@
 				1ABDFB9E98DD45F8459B80F2 /* MemoryCard.swift in Sources */,
 				E9A532062F3604283782CE95 /* MemoryDetailView.swift in Sources */,
 				0AD5D7B3A5286E4EE0A8389C /* MemoryItem.swift in Sources */,
+				76E2CFC1698ECE457D2CBB1C /* MemoryScanConfiguration.swift in Sources */,
 				FEE2C5A58E171A5DE6710C90 /* Neo4jQueryClient.swift in Sources */,
 				D66DF27AF2296BB82C096D85 /* OpenAIResponsesClient.swift in Sources */,
 				705B905F321974480B87E143 /* QdrantVectorMemoryStore.swift in Sources */,
@@ -414,6 +424,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				778BBFA409C25E744C7BA607 /* MemoryScanConfigurationTests.swift in Sources */,
+				87E688634035C035F05C020F /* OpenAIResponsesClientTests.swift in Sources */,
 				C16CD08A7DEF4158BC231972 /* QdrantVectorMemoryStoreFailureTests.swift in Sources */,
 				12E147D7E79282825ACF5529 /* VectorMathTests.swift in Sources */,
 			);

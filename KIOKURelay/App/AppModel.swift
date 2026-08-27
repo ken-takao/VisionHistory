@@ -1,6 +1,11 @@
 import SwiftUI
 import UIKit
 
+struct CapturedMemoryFrame {
+    let image: CGImage
+    let capturedAt: Date
+}
+
 @MainActor
 final class AppModel: ObservableObject {
     @Published private(set) var memories: [MemoryItem] = []
@@ -128,60 +133,128 @@ final class AppModel: ObservableObject {
     }
 
     func captureMemory(from image: CGImage, useCloud: Bool) async -> MemoryItem? {
+        await captureMemories(
+            from: [CapturedMemoryFrame(image: image, capturedAt: .now)],
+            useCloud: useCloud
+        ).first
+    }
+
+    func captureMemories(from frames: [CapturedMemoryFrame], useCloud: Bool) async -> [MemoryItem] {
+        guard !frames.isEmpty else {
+            lastMessage = "記憶できるフレームがありませんでした"
+            return []
+        }
+
         isBusy = true
         defer { isBusy = false }
 
         do {
-            let visualEmbedding = try await visionEmbedder.embedding(for: image)
-            let uiImage = UIImage(cgImage: image)
-            guard let jpegData = uiImage.jpegData(compressionQuality: 0.62) else {
-                throw ServiceError.malformedPayload("撮影画像を保存できませんでした")
-            }
-
-            var analysis = ImageAnalysis.localFallback
-            if useCloud, cloudEnrichmentEnabled, secrets.hasOpenAI {
-                analysis = try await openAI.analyze(jpegData: jpegData)
-            }
-
-            let searchableText = ([analysis.title, analysis.summary, analysis.placeHint] + analysis.tags + analysis.objects)
-                .joined(separator: " ")
-            let textEmbedding = await textEmbedder.embedding(for: searchableText)
-            var memory = MemoryItem(
-                title: analysis.title,
-                summary: analysis.summary,
-                place: analysis.placeHint,
-                tags: Array(Set(analysis.tags + analysis.objects)).sorted(),
-                symbolName: "viewfinder",
-                thumbnailJPEG: jpegData,
-                visualEmbedding: visualEmbedding,
-                textEmbedding: textEmbedding
-            )
-
-            let similar = try await store.searchSimilar(visualEmbedding: visualEmbedding, limit: 1)
-            if let nearest = similar.first, nearest.score > 0.985,
-               Date.now.timeIntervalSince(nearest.memory.capturedAt) < 60 {
-                lastMessage = "ほぼ同じ場面だったため、重複保存を省きました"
-                return nearest.memory
-            }
-
-            try await store.upsert(memory)
-            if useCloud, secrets.hasNeo4j {
-                do {
-                    try await neo4j.recordObservation(memory)
-                    memory.neo4jSynced = true
-                    try await store.upsert(memory)
-                } catch {
-                    lastMessage = "端末には保存済み。Neo4j同期は後で再試行します"
+            var preparedFrames: [PreparedMemoryFrame] = []
+            preparedFrames.reserveCapacity(frames.count)
+            for frame in frames {
+                if Task.isCancelled { return [] }
+                let visualEmbedding = try await visionEmbedder.embedding(for: frame.image)
+                let uiImage = UIImage(cgImage: frame.image)
+                guard let jpegData = uiImage.jpegData(compressionQuality: 0.62) else {
+                    throw ServiceError.malformedPayload("撮影画像を保存できませんでした")
                 }
+                preparedFrames.append(
+                    PreparedMemoryFrame(
+                        capturedAt: frame.capturedAt,
+                        jpegData: jpegData,
+                        visualEmbedding: visualEmbedding
+                    )
+                )
+            }
+
+            let shouldEnrichWithOpenAI = useCloud && cloudEnrichmentEnabled && secrets.hasOpenAI
+            var analyses = Array(repeating: ImageAnalysis.localFallback, count: preparedFrames.count)
+            var openAIFailure: Error?
+            if shouldEnrichWithOpenAI {
+                do {
+                    analyses = try await openAI.analyze(jpegData: preparedFrames.map(\.jpegData))
+                } catch {
+                    openAIFailure = error
+                }
+            }
+
+            var savedMemories: [MemoryItem] = []
+            savedMemories.reserveCapacity(preparedFrames.count)
+            var duplicateCount = 0
+            var neo4jFailureCount = 0
+            let memoriesBeforeScan = try await store.loadAll()
+            let memoryIDsBeforeScan = Set(memoriesBeforeScan.map(\.id))
+
+            for (prepared, analysis) in zip(preparedFrames, analyses) {
+                let searchableText = (
+                    [analysis.title, analysis.summary, analysis.placeHint]
+                        + analysis.tags
+                        + analysis.objects
+                ).joined(separator: " ")
+                let textEmbedding = await textEmbedder.embedding(for: searchableText)
+                var memory = MemoryItem(
+                    title: analysis.title,
+                    summary: analysis.summary,
+                    capturedAt: prepared.capturedAt,
+                    place: analysis.placeHint,
+                    tags: Array(Set(analysis.tags + analysis.objects)).sorted(),
+                    symbolName: "viewfinder",
+                    thumbnailJPEG: prepared.jpegData,
+                    visualEmbedding: prepared.visualEmbedding,
+                    textEmbedding: textEmbedding
+                )
+
+                let similar = try await store.searchSimilar(
+                    visualEmbedding: prepared.visualEmbedding,
+                    limit: preparedFrames.count + 1
+                )
+                // Frames already saved by this scan are intentionally not treated as
+                // duplicates: every sampled frame keeps its own OpenAI metadata. We
+                // only suppress a near-identical memory that predates this scan.
+                if let nearest = similar.first(where: { memoryIDsBeforeScan.contains($0.memory.id) }),
+                   nearest.score > 0.985,
+                   prepared.capturedAt.timeIntervalSince(nearest.memory.capturedAt) < 60 {
+                    duplicateCount += 1
+                    continue
+                }
+
+                try await store.upsert(memory)
+                if useCloud, secrets.hasNeo4j {
+                    do {
+                        try await neo4j.recordObservation(memory)
+                        memory.neo4jSynced = true
+                        try await store.upsert(memory)
+                    } catch {
+                        neo4jFailureCount += 1
+                    }
+                }
+                savedMemories.append(memory)
             }
 
             memories = try await store.loadAll()
             searchResults = memories.map { ScoredMemory(memory: $0, score: 1) }
-            lastMessage = "“\(memory.title)”を記憶しました"
-            return memory
+
+            if let openAIFailure {
+                lastMessage = "\(preparedFrames.count)枚を処理し、\(savedMemories.count)件を端末に保存しました。OpenAIメタ情報の取得に失敗しました: \(openAIFailure.localizedDescription)"
+            } else if savedMemories.isEmpty {
+                lastMessage = "\(preparedFrames.count)枚を解析しましたが、すべて既存の記憶と重複していました"
+            } else {
+                let enrichment = shouldEnrichWithOpenAI ? "OpenAIで全画像を解析し、" : ""
+                let duplicateNote = duplicateCount > 0 ? "（重複\(duplicateCount)枚を除外）" : ""
+                lastMessage = "\(enrichment)\(savedMemories.count)件を記憶しました\(duplicateNote)"
+            }
+            if neo4jFailureCount > 0 {
+                lastMessage = (lastMessage ?? "端末に保存しました")
+                    + " / Neo4j未同期: \(neo4jFailureCount)件"
+            }
+            return savedMemories
         } catch {
+            if let latestMemories = try? await store.loadAll() {
+                memories = latestMemories
+                searchResults = latestMemories.map { ScoredMemory(memory: $0, score: 1) }
+            }
             lastMessage = error.localizedDescription
-            return nil
+            return []
         }
     }
 
@@ -235,5 +308,11 @@ final class AppModel: ObservableObject {
         if !summary.isEmpty { parts.append(summary) }
         if !place.isEmpty { parts.append("場所は\(place)です。") }
         return parts.joined(separator: " ")
+    }
+
+    private struct PreparedMemoryFrame {
+        let capturedAt: Date
+        let jpegData: Data
+        let visualEmbedding: [Float]
     }
 }

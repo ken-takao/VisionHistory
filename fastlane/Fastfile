@@ -128,7 +128,7 @@ platform :ios do
       ipa: lane_context[SharedValues::IPA_OUTPUT_PATH],
       changelog: ENV.fetch(
         "KIOKU_WHAT_TO_TEST",
-        "10秒の記憶スキャン、自然文検索、証拠付き詳細表示、各クラウド接続状態を確認してください。"
+        "30秒で最大15枚を記録し、全キーフレームのメタ情報生成、自然文検索、詳細表示を確認してください。"
       ),
       skip_waiting_for_build_processing: false,
       skip_submission: false,

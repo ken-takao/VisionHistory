@@ -64,7 +64,7 @@ struct HomeView: View {
                     Text("目の前を、\n検索できる記憶へ。")
                         .font(.system(size: 28, weight: .bold, design: .rounded))
                         .foregroundStyle(AppTheme.paper)
-                    Text("映像は端末内で間引き・特徴量化。\n代表フレームだけを保存します。")
+                    Text("30秒の映像を端末内で間引き・特徴量化。\n最大15枚を検索できる記憶にします。")
                         .font(.subheadline)
                         .foregroundStyle(AppTheme.fog)
                 }
@@ -75,7 +75,10 @@ struct HomeView: View {
             }
 
             Button(action: openScanner) {
-                Label("10秒の記憶スキャン", systemImage: "viewfinder")
+                Label(
+                    "\(MemoryScanConfiguration.standard.durationSeconds)秒の記憶スキャン",
+                    systemImage: "viewfinder"
+                )
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 15)

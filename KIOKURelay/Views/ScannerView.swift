@@ -5,9 +5,13 @@ struct ScannerView: View {
     @Environment(\.scenePhase) private var scenePhase
     @StateObject private var camera = CameraCaptureService()
     @State private var isScanning = false
+    @State private var isProcessing = false
+    @State private var stopRequested = false
     @State private var progress: Double = 0
     @State private var acceptedFrames = 0
     @State private var scanTask: Task<Void, Never>?
+
+    private let scanConfiguration = MemoryScanConfiguration.standard
 
     var body: some View {
         ZStack {
@@ -18,12 +22,19 @@ struct ScannerView: View {
         .task { await camera.requestAndStart() }
         .onDisappear {
             scanTask?.cancel()
+            scanTask = nil
+            stopRequested = false
+            isScanning = false
+            isProcessing = false
             camera.stop()
         }
         .onChange(of: scenePhase) { _, newValue in
             if newValue != .active {
                 scanTask?.cancel()
+                scanTask = nil
+                stopRequested = false
                 isScanning = false
+                isProcessing = false
                 camera.stop()
             } else if !camera.isRunning {
                 Task { await camera.requestAndStart() }
@@ -62,14 +73,14 @@ struct ScannerView: View {
                         .font(.caption.bold())
                         .tracking(2)
                         .foregroundStyle(AppTheme.lime)
-                    Text(isScanning ? "場面の変化を記憶中" : "ゆっくり見渡してください")
+                    Text(scanStatusTitle)
                         .font(.headline)
                         .foregroundStyle(.white)
                 }
                 Spacer()
                 HStack(spacing: 6) {
                     Circle().fill(isScanning ? AppTheme.coral : AppTheme.mint).frame(width: 8, height: 8)
-                    Text(isScanning ? "解析中" : "端末内処理")
+                    Text(isProcessing ? "メタ情報生成" : isScanning ? "収集中" : "端末内処理")
                         .font(.caption.weight(.semibold))
                 }
                 .padding(.horizontal, 10)
@@ -82,9 +93,13 @@ struct ScannerView: View {
             Spacer()
 
             RoundedRectangle(cornerRadius: 34, style: .continuous)
-                .stroke(AppTheme.lime.opacity(isScanning ? 0.9 : 0.46), lineWidth: 2)
+                .stroke(AppTheme.lime.opacity(isScanning || isProcessing ? 0.9 : 0.46), lineWidth: 2)
                 .overlay(alignment: .topLeading) {
-                    Text(isScanning ? "\(acceptedFrames) KEYFRAMES" : "AUTO KEYFRAME")
+                    Text(
+                        isScanning || isProcessing
+                            ? "\(acceptedFrames)/\(scanConfiguration.targetKeyframeCount) KEYFRAMES"
+                            : "AUTO KEYFRAME"
+                    )
                         .font(.caption2.monospaced().weight(.bold))
                         .foregroundStyle(AppTheme.lime)
                         .padding(10)
@@ -98,15 +113,27 @@ struct ScannerView: View {
                 if isScanning {
                     ProgressView(value: progress)
                         .tint(AppTheme.lime)
-                    Text("30fpsの映像から、意味のある瞬間だけを選択しています")
+                    Text(
+                        "30fpsの映像から\(scanConfiguration.keyframeIntervalSeconds)秒ごとに"
+                            + "最大\(scanConfiguration.targetKeyframeCount)枚を記録しています"
+                    )
+                        .font(.caption)
+                        .foregroundStyle(.white.opacity(0.72))
+                } else if isProcessing {
+                    ProgressView()
+                        .tint(AppTheme.lime)
+                    Text("全キーフレームのメタ情報をまとめて生成しています")
                         .font(.caption)
                         .foregroundStyle(.white.opacity(0.72))
                 } else {
                     Toggle(isOn: $model.cloudEnrichmentEnabled) {
                         VStack(alignment: .leading, spacing: 2) {
-                            Text("代表フレームをAIで説明")
+                            Text("全キーフレームをAIで説明")
                                 .font(.subheadline.weight(.semibold))
-                            Text("有効時のみ最後の1枚をOpenAIへ送信")
+                            Text(
+                                "有効時は最大\(scanConfiguration.targetKeyframeCount)枚すべてを"
+                                    + "OpenAIへ送信"
+                            )
                                 .font(.caption2)
                                 .foregroundStyle(.white.opacity(0.65))
                         }
@@ -119,16 +146,20 @@ struct ScannerView: View {
                         Circle()
                             .fill(isScanning ? AppTheme.coral : AppTheme.lime)
                             .frame(width: 76, height: 76)
-                        Image(systemName: isScanning ? "stop.fill" : "viewfinder")
+                        Image(systemName: isProcessing ? "sparkles" : isScanning ? "stop.fill" : "viewfinder")
                             .font(.system(size: 28, weight: .bold))
                             .foregroundStyle(AppTheme.ink)
                     }
                 }
                 .buttonStyle(.plain)
-                .disabled(camera.authorizationState != .authorized)
-                .opacity(camera.authorizationState == .authorized ? 1 : 0.45)
+                .disabled(
+                    camera.authorizationState != .authorized
+                        || isProcessing
+                        || stopRequested
+                )
+                .opacity(camera.authorizationState == .authorized && !isProcessing ? 1 : 0.45)
 
-                Text(isScanning ? "タップして停止" : "10秒スキャンを開始")
+                Text(scanActionTitle)
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(.white)
             }
@@ -153,29 +184,64 @@ struct ScannerView: View {
 
     private func toggleScan() {
         if isScanning {
-            scanTask?.cancel()
-            isScanning = false
+            stopRequested = true
             return
         }
 
+        guard !isProcessing else { return }
         isScanning = true
+        stopRequested = false
         progress = 0
         acceptedFrames = 0
         scanTask = Task {
-            let sampleCount = 5
-            for index in 0..<sampleCount {
-                if Task.isCancelled { break }
-                try? await Task.sleep(for: .seconds(index == 0 ? 0.5 : 2))
-                if Task.isCancelled { break }
+            let clock = ContinuousClock()
+            let startedAt = clock.now
+            var capturedFrames: [CapturedMemoryFrame] = []
+            capturedFrames.reserveCapacity(scanConfiguration.targetKeyframeCount)
 
-                progress = Double(index + 1) / Double(sampleCount)
-                guard let image = camera.snapshot() else { continue }
-                let isRepresentativeFrame = index == sampleCount - 1
-                if await model.captureMemory(from: image, useCloud: isRepresentativeFrame) != nil {
-                    acceptedFrames += 1
+            for offset in scanConfiguration.keyframeOffsetsSeconds {
+                do {
+                    try await clock.sleep(
+                        until: startedAt.advanced(by: .seconds(offset)),
+                        tolerance: .milliseconds(80)
+                    )
+                } catch {
+                    return
                 }
+                guard !Task.isCancelled else { return }
+                if stopRequested { break }
+
+                progress = Double(offset) / Double(scanConfiguration.durationSeconds)
+                guard let image = camera.snapshot() else { continue }
+                capturedFrames.append(CapturedMemoryFrame(image: image, capturedAt: .now))
+                acceptedFrames = capturedFrames.count
             }
+
             isScanning = false
+            stopRequested = false
+            guard !Task.isCancelled, !capturedFrames.isEmpty else {
+                scanTask = nil
+                return
+            }
+
+            isProcessing = true
+            _ = await model.captureMemories(from: capturedFrames, useCloud: true)
+            isProcessing = false
+            scanTask = nil
         }
+    }
+
+    private var scanStatusTitle: String {
+        if isProcessing { return "全キーフレームを解析中" }
+        if stopRequested { return "スキャンを停止しています" }
+        if isScanning { return "場面の変化を記憶中" }
+        return "ゆっくり見渡してください"
+    }
+
+    private var scanActionTitle: String {
+        if isProcessing { return "メタ情報を生成中" }
+        if stopRequested { return "記録済みフレームを保存します" }
+        if isScanning { return "タップして停止" }
+        return "\(scanConfiguration.durationSeconds)秒スキャンを開始"
     }
 }
