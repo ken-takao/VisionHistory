@@ -18,8 +18,9 @@ laneはRust/Swiftテスト、XCFramework生成、XcodeGen、最新TestFlight bui
    - Primary language: Japanese
    - Bundle ID: `ai.kiokurelay.demo`
    - SKU: `kioku-relay-ios`
+   - Apple ID: `6805855445`
 4. Users and AccessでAdminまたはApp Manager権限のApp Store Connect API keyを作り、`.p8`をリポジトリ外へ保存する。署名profileの自動管理に必要なCertificates, Identifiers & Profilesへのアクセスも有効にする。
-5. 内部テスターグループを作る。自動配信を有効にすると処理後の配信が最短になる。
+5. 内部テスターグループ `Internal Testers` を作り、対象の内部テスターを追加する。新規ビルドの自動配信は有効化済み。
 6. App Store Connectの申告項目を用意する。
    - Privacy Policy URLとApp Privacy回答
    - 年齢レーティング
@@ -29,6 +30,8 @@ laneはRust/Swiftテスト、XCFramework生成、XcodeGen、最新TestFlight bui
 Bundle IDとSKUはApp record作成後の変更に制約があります。別IDを使う場合は、初回buildをアップロードする前に`KIOKU_BUNDLE_ID`と`project.yml`を同じ値へ変更してください。
 
 ## ローカル設定
+
+このMacでは、既存のApp Store Connect管理者キーをGit対象外の`.env`へ設定済みです。別のMacやCIでは次の環境変数を設定します。
 
 ```sh
 export ASC_KEY_ID="YOUR_KEY_ID"

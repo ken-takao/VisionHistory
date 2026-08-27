@@ -119,8 +119,7 @@ platform :ios do
         manageAppVersionAndBuildNumber: false,
         testFlightInternalTestingOnly: false
       },
-      xcargs: xcargs,
-      export_xcargs: auth_flags
+      xcargs: xcargs
     )
 
     upload_options = {
