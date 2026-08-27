@@ -1,0 +1,166 @@
+require "shellwords"
+
+PROJECT_ROOT = File.expand_path("..", __dir__)
+
+default_platform(:ios)
+
+PROJECT_PATH = File.join(PROJECT_ROOT, "KIOKURelay.xcodeproj")
+SCHEME = "KIOKURelay"
+DEFAULT_BUNDLE_ID = "ai.kiokurelay.demo"
+DEFAULT_TEAM_ID = "UJ293X328U"
+
+def required_environment(name)
+  value = ENV[name].to_s.strip
+  UI.user_error!("Missing required environment variable: #{name}") if value.empty?
+  value
+end
+
+def marketing_version
+  configured = ENV["KIOKU_MARKETING_VERSION"].to_s.strip
+  return configured unless configured.empty?
+
+  base_config = File.join(PROJECT_ROOT, "Config/Base.xcconfig")
+  match = File.read(base_config).match(/^MARKETING_VERSION\s*=\s*(\S+)/)
+  UI.user_error!("MARKETING_VERSION is missing from Config/Base.xcconfig") unless match
+  match[1]
+end
+
+def app_store_connect_credentials
+  key_id = required_environment("ASC_KEY_ID")
+  issuer_id = required_environment("ASC_ISSUER_ID")
+  key_path = File.expand_path(required_environment("ASC_KEY_PATH"))
+  UI.user_error!("ASC_KEY_PATH does not exist: #{key_path}") unless File.file?(key_path)
+
+  api_key = app_store_connect_api_key(
+    key_id: key_id,
+    issuer_id: issuer_id,
+    key_filepath: key_path,
+    duration: 1_200,
+    in_house: false
+  )
+
+  auth_flags = [
+    "-allowProvisioningUpdates",
+    "-authenticationKeyPath #{Shellwords.escape(key_path)}",
+    "-authenticationKeyID #{Shellwords.escape(key_id)}",
+    "-authenticationKeyIssuerID #{Shellwords.escape(issuer_id)}"
+  ].join(" ")
+
+  [api_key, auth_flags]
+end
+
+platform :ios do
+  desc "Run the release tests and an unsigned device Release build"
+  lane :verify do
+    prepare_project
+
+    run_tests(
+      project: PROJECT_PATH,
+      scheme: SCHEME,
+      device: "iPhone 17 Pro (26.5)",
+      clean: true
+    )
+
+    sh(
+      "xcodebuild",
+      "-project", PROJECT_PATH,
+      "-scheme", SCHEME,
+      "-configuration", "Release",
+      "-destination", "generic/platform=iOS",
+      "CODE_SIGNING_ALLOWED=NO",
+      "build"
+    )
+  end
+
+  desc "Test, sign, upload, and wait for internal TestFlight processing"
+  lane :beta do
+    bundle_id = ENV.fetch("KIOKU_BUNDLE_ID", DEFAULT_BUNDLE_ID)
+    team_id = ENV.fetch("KIOKU_APPLE_TEAM_ID", DEFAULT_TEAM_ID)
+    version = marketing_version
+    api_key, auth_flags = app_store_connect_credentials
+    verify
+
+    configured_build = ENV["KIOKU_BUILD_NUMBER"].to_s.strip
+    build_number = if configured_build.empty?
+      latest_testflight_build_number(
+        api_key: api_key,
+        app_identifier: bundle_id,
+        version: version,
+        platform: "ios",
+        initial_build_number: 0
+      ).to_i + 1
+    else
+      Integer(configured_build, 10)
+    end
+
+    output_directory = File.join(PROJECT_ROOT, "build/testflight")
+    xcargs = [
+      auth_flags,
+      "DEVELOPMENT_TEAM=#{Shellwords.escape(team_id)}",
+      "CODE_SIGN_STYLE=Automatic",
+      "CURRENT_PROJECT_VERSION=#{build_number}"
+    ].join(" ")
+
+    build_app(
+      project: PROJECT_PATH,
+      scheme: SCHEME,
+      configuration: "Release",
+      clean: true,
+      archive_path: File.join(output_directory, "KIOKURelay.xcarchive"),
+      output_directory: output_directory,
+      output_name: "KIOKURelay.ipa",
+      export_method: "app-store",
+      export_team_id: team_id,
+      export_options: {
+        method: "app-store-connect",
+        signingStyle: "automatic",
+        teamID: team_id,
+        uploadSymbols: true,
+        manageAppVersionAndBuildNumber: false,
+        testFlightInternalTestingOnly: false
+      },
+      xcargs: xcargs,
+      export_xcargs: auth_flags
+    )
+
+    upload_options = {
+      api_key: api_key,
+      app_identifier: bundle_id,
+      ipa: lane_context[SharedValues::IPA_OUTPUT_PATH],
+      changelog: ENV.fetch(
+        "KIOKU_WHAT_TO_TEST",
+        "10秒の記憶スキャン、自然文検索、証拠付き詳細表示、各クラウド接続状態を確認してください。"
+      ),
+      skip_waiting_for_build_processing: false,
+      skip_submission: false,
+      distribute_external: false,
+      notify_external_testers: false,
+      uses_non_exempt_encryption: false
+    }
+
+    upload_to_testflight(**upload_options)
+
+    UI.success("KIOKU RELAY #{version} (#{build_number}) is processed in TestFlight")
+  end
+
+  private_lane :prepare_project do
+    icon_path = File.join(
+      PROJECT_ROOT,
+      "KIOKURelay/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png"
+    )
+    UI.user_error!("Missing App Store icon: #{icon_path}") unless File.file?(icon_path)
+
+    unless File.file?(File.join(PROJECT_ROOT, "Config/ReleaseSecrets.xcconfig"))
+      UI.important("ReleaseSecrets.xcconfig is absent; the TestFlight build will run without cloud credentials")
+    end
+
+    sh("bash", File.join(PROJECT_ROOT, "EdgeBridge/scripts/test.sh"))
+    sh("bash", File.join(PROJECT_ROOT, "EdgeBridge/scripts/build-xcframework.sh"))
+    sh(
+      "xcodegen", "generate",
+      "--spec", File.join(PROJECT_ROOT, "project.yml"),
+      "--project", PROJECT_ROOT,
+      "--project-root", PROJECT_ROOT
+    )
+  end
+end

@@ -1,0 +1,661 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0AD5D7B3A5286E4EE0A8389C /* MemoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4E2F17A62B13F25E98F6F4 /* MemoryItem.swift */; };
+		0EE12160712CC1F69EDCA410 /* ServiceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05C59CC22BB58E3F1D0FC20 /* ServiceStatus.swift */; };
+		12E147D7E79282825ACF5529 /* VectorMathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA735BAE2DD21779CEDC8515 /* VectorMathTests.swift */; };
+		1595A24F9A903D8BEBCB8B04 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A36CEEB6D4738C2DCFC46AF7 /* CoreFoundation.framework */; };
+		1ABDFB9E98DD45F8459B80F2 /* MemoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7818F831EC49E745C5E9DD /* MemoryCard.swift */; };
+		3E8C716AE5F7C657CD3A7580 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2290A8134F5D3FED45C117B /* CameraPreview.swift */; };
+		423794B9280B95D6576D9CDF /* CameraCaptureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE06B4ECD35FA83A0499ECE /* CameraCaptureService.swift */; };
+		51805F5350047E465E1FF46E /* ImageAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BA482A71B73C0E7C289A02 /* ImageAnalysis.swift */; };
+		564C1EEA2BCFB45FBB51055F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6206350E42B2EA7B76884F93 /* Security.framework */; };
+		60F282A63F7A33A3B2B880FD /* ServicePill.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED485AFFECB03D20992A356 /* ServicePill.swift */; };
+		62BDD2283CA44362E08F6A97 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696E9D0D4E6DD5034BD046B8 /* RootView.swift */; };
+		6495689414FF125A15B854CB /* KIOKURelayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88BE40AF8F2627999358A50 /* KIOKURelayApp.swift */; };
+		6881D5EEA6C3EA30525B2FF0 /* ShisaVoiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B061F671B9260E14BDB448F3 /* ShisaVoiceClient.swift */; };
+		705B905F321974480B87E143 /* QdrantVectorMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6F64268C464DF40E38FAC /* QdrantVectorMemoryStore.swift */; };
+		719DD048FB21499CCABD4D25 /* AppleTextEmbedder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F42A7E71E9A466BC60ED47D /* AppleTextEmbedder.swift */; };
+		71AF8F17DE1E4F871F44CF26 /* SystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4496F96B7BED02051C495BA /* SystemView.swift */; };
+		7DCE1E1E4BEF79C083609B7A /* EdgeBridge.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C693ED75647B34FACC0D8F /* EdgeBridge.xcframework */; };
+		95D6A66F10FA200F2C14078D /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201F457886E0368D6F0F3DA5 /* AppModel.swift */; };
+		9E9AA99CC45D852C90341CB4 /* FileVectorMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB9B84064CF60BF7571B72 /* FileVectorMemoryStore.swift */; };
+		B4B7BCB9C6B89DB5E623FDE6 /* VectorMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438AB69F47AEF0C0332E340 /* VectorMath.swift */; };
+		B5EFA4B0DCFAB3CF1EAD6A0B /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E3A8DBFC6966682DAF76EC /* ScannerView.swift */; };
+		BF395A9B9B099C3C19AF0A65 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2EB887ED2ED543B271A6CF /* ServiceError.swift */; };
+		C16CD08A7DEF4158BC231972 /* QdrantVectorMemoryStoreFailureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A7077EE7ED20BD074F1F86 /* QdrantVectorMemoryStoreFailureTests.swift */; };
+		CCAD41691D1E5007A1D834E1 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD983CD3CF972C67F0B3C959 /* AppTheme.swift */; };
+		D1F8A89B574D396974459358 /* VisionFeaturePrintEmbedder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5A8D35364777ED94A8A4E9 /* VisionFeaturePrintEmbedder.swift */; };
+		D66DF27AF2296BB82C096D85 /* OpenAIResponsesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98931BA4FF4D41AD583D3177 /* OpenAIResponsesClient.swift */; };
+		D788D873CE07024FF660D9BF /* VectorMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9444952F329D7F629C104538 /* VectorMemoryStore.swift */; };
+		D7B916268D268458B2A7B81A /* SearchMemoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8385525745D0CE47ACAE3C9 /* SearchMemoriesView.swift */; };
+		D820B45D9F5B28A93B12DB75 /* EdgeBridgeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EE094486B664A055039EB6 /* EdgeBridgeClient.swift */; };
+		E2752760963F761BB97BD01E /* AppSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454B0D013869158CC7BAC43B /* AppSecrets.swift */; };
+		E80ADAD47D49649E089040D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57B85FCCD7F7BDDD4E81DDE7 /* Assets.xcassets */; };
+		E9A532062F3604283782CE95 /* MemoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327F1E9F45A9C11FC1581D90 /* MemoryDetailView.swift */; };
+		F560BD54AB578E48AB06B76D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CC12A5B664E6E85F535DDA /* HomeView.swift */; };
+		FEBA0436C5A71D081483CD47 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B389C80C5CEA2B91022FBD12 /* PrivacyInfo.xcprivacy */; };
+		FEE2C5A58E171A5DE6710C90 /* Neo4jQueryClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02B1DC3F4CCA4719AF8B4E /* Neo4jQueryClient.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5FE4140CDC62ECADC4F13CDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18A7204EB0AC699FAB7DE2A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D52DE963213784DFE13FF03A;
+			remoteInfo = KIOKURelay;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15BB9B84064CF60BF7571B72 /* FileVectorMemoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileVectorMemoryStore.swift; sourceTree = "<group>"; };
+		201F457886E0368D6F0F3DA5 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		2A8EE8ADD1A7818D61CC9553 /* KIOKURelayTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = KIOKURelayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F42A7E71E9A466BC60ED47D /* AppleTextEmbedder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleTextEmbedder.swift; sourceTree = "<group>"; };
+		327F1E9F45A9C11FC1581D90 /* MemoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDetailView.swift; sourceTree = "<group>"; };
+		32A7077EE7ED20BD074F1F86 /* QdrantVectorMemoryStoreFailureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QdrantVectorMemoryStoreFailureTests.swift; sourceTree = "<group>"; };
+		454B0D013869158CC7BAC43B /* AppSecrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSecrets.swift; sourceTree = "<group>"; };
+		46BA482A71B73C0E7C289A02 /* ImageAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnalysis.swift; sourceTree = "<group>"; };
+		50192A2A906296DDCE6C83A1 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		56E3A8DBFC6966682DAF76EC /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		57B85FCCD7F7BDDD4E81DDE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5C5A8D35364777ED94A8A4E9 /* VisionFeaturePrintEmbedder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionFeaturePrintEmbedder.swift; sourceTree = "<group>"; };
+		6206350E42B2EA7B76884F93 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		696E9D0D4E6DD5034BD046B8 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		7438AB69F47AEF0C0332E340 /* VectorMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMath.swift; sourceTree = "<group>"; };
+		831AE7B589156C3C1B925B94 /* KIOKURelay.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = KIOKURelay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85C693ED75647B34FACC0D8F /* EdgeBridge.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = EdgeBridge.xcframework; path = EdgeBridge/build/EdgeBridge.xcframework; sourceTree = "<group>"; };
+		8AD6F64268C464DF40E38FAC /* QdrantVectorMemoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QdrantVectorMemoryStore.swift; sourceTree = "<group>"; };
+		8C7818F831EC49E745C5E9DD /* MemoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCard.swift; sourceTree = "<group>"; };
+		8F2EB887ED2ED543B271A6CF /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		8FE06B4ECD35FA83A0499ECE /* CameraCaptureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureService.swift; sourceTree = "<group>"; };
+		9444952F329D7F629C104538 /* VectorMemoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMemoryStore.swift; sourceTree = "<group>"; };
+		98931BA4FF4D41AD583D3177 /* OpenAIResponsesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponsesClient.swift; sourceTree = "<group>"; };
+		A36CEEB6D4738C2DCFC46AF7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		A88BE40AF8F2627999358A50 /* KIOKURelayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KIOKURelayApp.swift; sourceTree = "<group>"; };
+		AC93F7E3D5C6C34FA2B49592 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		AD983CD3CF972C67F0B3C959 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		B061F671B9260E14BDB448F3 /* ShisaVoiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShisaVoiceClient.swift; sourceTree = "<group>"; };
+		B389C80C5CEA2B91022FBD12 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		B4CC12A5B664E6E85F535DDA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BE02B1DC3F4CCA4719AF8B4E /* Neo4jQueryClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neo4jQueryClient.swift; sourceTree = "<group>"; };
+		C2290A8134F5D3FED45C117B /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		C8385525745D0CE47ACAE3C9 /* SearchMemoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMemoriesView.swift; sourceTree = "<group>"; };
+		CB4E2F17A62B13F25E98F6F4 /* MemoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryItem.swift; sourceTree = "<group>"; };
+		E4496F96B7BED02051C495BA /* SystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemView.swift; sourceTree = "<group>"; };
+		EED485AFFECB03D20992A356 /* ServicePill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicePill.swift; sourceTree = "<group>"; };
+		F05C59CC22BB58E3F1D0FC20 /* ServiceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStatus.swift; sourceTree = "<group>"; };
+		F6EE094486B664A055039EB6 /* EdgeBridgeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeBridgeClient.swift; sourceTree = "<group>"; };
+		FA735BAE2DD21779CEDC8515 /* VectorMathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMathTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CCBF7AB8EF15748B6EE30B4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DCE1E1E4BEF79C083609B7A /* EdgeBridge.xcframework in Frameworks */,
+				564C1EEA2BCFB45FBB51055F /* Security.framework in Frameworks */,
+				1595A24F9A903D8BEBCB8B04 /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05168396364F86D383D3A7F2 /* Embeddings */ = {
+			isa = PBXGroup;
+			children = (
+				2F42A7E71E9A466BC60ED47D /* AppleTextEmbedder.swift */,
+				7438AB69F47AEF0C0332E340 /* VectorMath.swift */,
+				5C5A8D35364777ED94A8A4E9 /* VisionFeaturePrintEmbedder.swift */,
+			);
+			path = Embeddings;
+			sourceTree = "<group>";
+		};
+		073D3AA2ABE6DA04981D3D37 /* Memory */ = {
+			isa = PBXGroup;
+			children = (
+				15BB9B84064CF60BF7571B72 /* FileVectorMemoryStore.swift */,
+				8AD6F64268C464DF40E38FAC /* QdrantVectorMemoryStore.swift */,
+				9444952F329D7F629C104538 /* VectorMemoryStore.swift */,
+			);
+			path = Memory;
+			sourceTree = "<group>";
+		};
+		1A3EE4CFEC67081A49A46042 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				8FE06B4ECD35FA83A0499ECE /* CameraCaptureService.swift */,
+				C2290A8134F5D3FED45C117B /* CameraPreview.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		23B5721914A5EEE5DF12933B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				454B0D013869158CC7BAC43B /* AppSecrets.swift */,
+				BE02B1DC3F4CCA4719AF8B4E /* Neo4jQueryClient.swift */,
+				98931BA4FF4D41AD583D3177 /* OpenAIResponsesClient.swift */,
+				8F2EB887ED2ED543B271A6CF /* ServiceError.swift */,
+				B061F671B9260E14BDB448F3 /* ShisaVoiceClient.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		265BDDAF9DFC60B90F84859C /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				AD983CD3CF972C67F0B3C959 /* AppTheme.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		39ED939715FD79B581A2EFCE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				46BA482A71B73C0E7C289A02 /* ImageAnalysis.swift */,
+				CB4E2F17A62B13F25E98F6F4 /* MemoryItem.swift */,
+				F05C59CC22BB58E3F1D0FC20 /* ServiceStatus.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3FE114D09B81F529952828D2 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				50192A2A906296DDCE6C83A1 /* Debug.xcconfig */,
+				AC93F7E3D5C6C34FA2B49592 /* Release.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		4D0F5AF51812A3C7E25EE82A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A36CEEB6D4738C2DCFC46AF7 /* CoreFoundation.framework */,
+				85C693ED75647B34FACC0D8F /* EdgeBridge.xcframework */,
+				6206350E42B2EA7B76884F93 /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4D81B9FC318440278BBDCC26 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B4CC12A5B664E6E85F535DDA /* HomeView.swift */,
+				327F1E9F45A9C11FC1581D90 /* MemoryDetailView.swift */,
+				696E9D0D4E6DD5034BD046B8 /* RootView.swift */,
+				56E3A8DBFC6966682DAF76EC /* ScannerView.swift */,
+				C8385525745D0CE47ACAE3C9 /* SearchMemoriesView.swift */,
+				E4496F96B7BED02051C495BA /* SystemView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		63F3831BD09635ACCAC6993F /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				F6EE094486B664A055039EB6 /* EdgeBridgeClient.swift */,
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
+		7A7E06A0347C0A86ECF67169 = {
+			isa = PBXGroup;
+			children = (
+				3FE114D09B81F529952828D2 /* Config */,
+				97BEA6F0005F7FDA48225FBD /* EdgeBridge */,
+				823314E7A05F39AAABA72473 /* KIOKURelay */,
+				D001EBEC839F50AF92B6119A /* KIOKURelayTests */,
+				4D0F5AF51812A3C7E25EE82A /* Frameworks */,
+				F90202B612766631789B9EC3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		823314E7A05F39AAABA72473 /* KIOKURelay */ = {
+			isa = PBXGroup;
+			children = (
+				B40A2F2DFD0FE75D90017597 /* App */,
+				1A3EE4CFEC67081A49A46042 /* Camera */,
+				AE9D8C57BC2B2DEE65CD3646 /* Components */,
+				265BDDAF9DFC60B90F84859C /* Design */,
+				05168396364F86D383D3A7F2 /* Embeddings */,
+				073D3AA2ABE6DA04981D3D37 /* Memory */,
+				39ED939715FD79B581A2EFCE /* Models */,
+				D298320EE18BEF6A8D0F68A1 /* Resources */,
+				23B5721914A5EEE5DF12933B /* Services */,
+				4D81B9FC318440278BBDCC26 /* Views */,
+			);
+			path = KIOKURelay;
+			sourceTree = "<group>";
+		};
+		97BEA6F0005F7FDA48225FBD /* EdgeBridge */ = {
+			isa = PBXGroup;
+			children = (
+				63F3831BD09635ACCAC6993F /* Swift */,
+			);
+			path = EdgeBridge;
+			sourceTree = "<group>";
+		};
+		AE9D8C57BC2B2DEE65CD3646 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8C7818F831EC49E745C5E9DD /* MemoryCard.swift */,
+				EED485AFFECB03D20992A356 /* ServicePill.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B40A2F2DFD0FE75D90017597 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				201F457886E0368D6F0F3DA5 /* AppModel.swift */,
+				A88BE40AF8F2627999358A50 /* KIOKURelayApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D001EBEC839F50AF92B6119A /* KIOKURelayTests */ = {
+			isa = PBXGroup;
+			children = (
+				32A7077EE7ED20BD074F1F86 /* QdrantVectorMemoryStoreFailureTests.swift */,
+				FA735BAE2DD21779CEDC8515 /* VectorMathTests.swift */,
+			);
+			path = KIOKURelayTests;
+			sourceTree = "<group>";
+		};
+		D298320EE18BEF6A8D0F68A1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				57B85FCCD7F7BDDD4E81DDE7 /* Assets.xcassets */,
+				B389C80C5CEA2B91022FBD12 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F90202B612766631789B9EC3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				831AE7B589156C3C1B925B94 /* KIOKURelay.app */,
+				2A8EE8ADD1A7818D61CC9553 /* KIOKURelayTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C499601AC5124ED1B0B2C17C /* KIOKURelayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A566DD4867BF8AFD465A5BFD /* Build configuration list for PBXNativeTarget "KIOKURelayTests" */;
+			buildPhases = (
+				8DE439B751F48A81FA1031A5 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EFD54D6ECE38167F78C40DE4 /* PBXTargetDependency */,
+			);
+			name = KIOKURelayTests;
+			packageProductDependencies = (
+			);
+			productName = KIOKURelayTests;
+			productReference = 2A8EE8ADD1A7818D61CC9553 /* KIOKURelayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D52DE963213784DFE13FF03A /* KIOKURelay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EDC2B6D3B3763988BFD5916 /* Build configuration list for PBXNativeTarget "KIOKURelay" */;
+			buildPhases = (
+				735C24528A27ABF2A31F2A5D /* Sources */,
+				9C88ADC048CB0C38DE1D0CC2 /* Resources */,
+				CCBF7AB8EF15748B6EE30B4A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KIOKURelay;
+			packageProductDependencies = (
+			);
+			productName = KIOKURelay;
+			productReference = 831AE7B589156C3C1B925B94 /* KIOKURelay.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18A7204EB0AC699FAB7DE2A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 38067AC7F92A6BBC14E1E93C /* Build configuration list for PBXProject "KIOKURelay" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 7A7E06A0347C0A86ECF67169;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = F90202B612766631789B9EC3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D52DE963213784DFE13FF03A /* KIOKURelay */,
+				C499601AC5124ED1B0B2C17C /* KIOKURelayTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9C88ADC048CB0C38DE1D0CC2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E80ADAD47D49649E089040D6 /* Assets.xcassets in Resources */,
+				FEBA0436C5A71D081483CD47 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		735C24528A27ABF2A31F2A5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95D6A66F10FA200F2C14078D /* AppModel.swift in Sources */,
+				E2752760963F761BB97BD01E /* AppSecrets.swift in Sources */,
+				CCAD41691D1E5007A1D834E1 /* AppTheme.swift in Sources */,
+				719DD048FB21499CCABD4D25 /* AppleTextEmbedder.swift in Sources */,
+				423794B9280B95D6576D9CDF /* CameraCaptureService.swift in Sources */,
+				3E8C716AE5F7C657CD3A7580 /* CameraPreview.swift in Sources */,
+				D820B45D9F5B28A93B12DB75 /* EdgeBridgeClient.swift in Sources */,
+				9E9AA99CC45D852C90341CB4 /* FileVectorMemoryStore.swift in Sources */,
+				F560BD54AB578E48AB06B76D /* HomeView.swift in Sources */,
+				51805F5350047E465E1FF46E /* ImageAnalysis.swift in Sources */,
+				6495689414FF125A15B854CB /* KIOKURelayApp.swift in Sources */,
+				1ABDFB9E98DD45F8459B80F2 /* MemoryCard.swift in Sources */,
+				E9A532062F3604283782CE95 /* MemoryDetailView.swift in Sources */,
+				0AD5D7B3A5286E4EE0A8389C /* MemoryItem.swift in Sources */,
+				FEE2C5A58E171A5DE6710C90 /* Neo4jQueryClient.swift in Sources */,
+				D66DF27AF2296BB82C096D85 /* OpenAIResponsesClient.swift in Sources */,
+				705B905F321974480B87E143 /* QdrantVectorMemoryStore.swift in Sources */,
+				62BDD2283CA44362E08F6A97 /* RootView.swift in Sources */,
+				B5EFA4B0DCFAB3CF1EAD6A0B /* ScannerView.swift in Sources */,
+				D7B916268D268458B2A7B81A /* SearchMemoriesView.swift in Sources */,
+				BF395A9B9B099C3C19AF0A65 /* ServiceError.swift in Sources */,
+				60F282A63F7A33A3B2B880FD /* ServicePill.swift in Sources */,
+				0EE12160712CC1F69EDCA410 /* ServiceStatus.swift in Sources */,
+				6881D5EEA6C3EA30525B2FF0 /* ShisaVoiceClient.swift in Sources */,
+				71AF8F17DE1E4F871F44CF26 /* SystemView.swift in Sources */,
+				B4B7BCB9C6B89DB5E623FDE6 /* VectorMath.swift in Sources */,
+				D788D873CE07024FF660D9BF /* VectorMemoryStore.swift in Sources */,
+				D1F8A89B574D396974459358 /* VisionFeaturePrintEmbedder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DE439B751F48A81FA1031A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C16CD08A7DEF4158BC231972 /* QdrantVectorMemoryStoreFailureTests.swift in Sources */,
+				12E147D7E79282825ACF5529 /* VectorMathTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EFD54D6ECE38167F78C40DE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D52DE963213784DFE13FF03A /* KIOKURelay */;
+			targetProxy = 5FE4140CDC62ECADC4F13CDB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2E8CDF4EC19E611877BF9F69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"EdgeBridge/build\"",
+				);
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = KIOKURelay/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ai.kiokurelay.demo;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		7375637DAACD316D8B31D07D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50192A2A906296DDCE6C83A1 /* Debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		873AE44348A97D8EBEC04BF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC93F7E3D5C6C34FA2B49592 /* Release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		9A8C59533215572B2F9B1A80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ai.kiokurelay.demo.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KIOKURelay.app/KIOKURelay";
+			};
+			name = Release;
+		};
+		DA7868FCC61FC686B37A3FFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"EdgeBridge/build\"",
+				);
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = KIOKURelay/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ai.kiokurelay.demo;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		E3832CC1FE4F42D053EC4566 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ai.kiokurelay.demo.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KIOKURelay.app/KIOKURelay";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1EDC2B6D3B3763988BFD5916 /* Build configuration list for PBXNativeTarget "KIOKURelay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA7868FCC61FC686B37A3FFD /* Debug */,
+				2E8CDF4EC19E611877BF9F69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		38067AC7F92A6BBC14E1E93C /* Build configuration list for PBXProject "KIOKURelay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7375637DAACD316D8B31D07D /* Debug */,
+				873AE44348A97D8EBEC04BF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A566DD4867BF8AFD465A5BFD /* Build configuration list for PBXNativeTarget "KIOKURelayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3832CC1FE4F42D053EC4566 /* Debug */,
+				9A8C59533215572B2F9B1A80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18A7204EB0AC699FAB7DE2A1 /* Project object */;
+}

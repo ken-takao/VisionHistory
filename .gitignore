@@ -1,0 +1,32 @@
+# Xcode
+DerivedData/
+build/
+*.xcuserstate
+xcuserdata/
+fastlane/test_output/
+fastlane/report.xml
+fastlane/Preview.html
+
+# Local demo credentials (never commit)
+Config/DebugSecrets.xcconfig
+Config/ReleaseSecrets.xcconfig
+*.p8
+*.p12
+*.mobileprovision
+.env
+.env.*
+
+# Ruby / Fastlane local output
+.bundle/
+vendor/bundle/
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# Rust / generated bridge artifacts
+EdgeBridge/target/
+EdgeBridge/build/
+
+# macOS
+.DS_Store

@@ -1,0 +1,66 @@
+name: KIOKURelay
+
+options:
+  bundleIdPrefix: ai.kiokurelay
+  deploymentTarget:
+    iOS: "18.0"
+  xcodeVersion: "26.0"
+  createIntermediateGroups: true
+
+configs:
+  Debug: debug
+  Release: release
+
+configFiles:
+  Debug: Config/Debug.xcconfig
+  Release: Config/Release.xcconfig
+
+targets:
+  KIOKURelay:
+    type: application
+    platform: iOS
+    sources:
+      - path: KIOKURelay
+        excludes:
+          - Resources/Info.plist
+      - path: EdgeBridge/Swift/EdgeBridgeClient.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ai.kiokurelay.demo
+        INFOPLIST_FILE: KIOKURelay/Resources/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: NO
+        ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: YES
+    dependencies:
+      - framework: EdgeBridge/build/EdgeBridge.xcframework
+        embed: false
+      - sdk: Security.framework
+      - sdk: CoreFoundation.framework
+
+  KIOKURelayTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: KIOKURelayTests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ai.kiokurelay.demo.tests
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: KIOKURelay
+
+schemes:
+  KIOKURelay:
+    build:
+      targets:
+        KIOKURelay: all
+        KIOKURelayTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - KIOKURelayTests
+    archive:
+      config: Release

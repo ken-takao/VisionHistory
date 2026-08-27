@@ -1,0 +1,2 @@
+app_identifier(ENV.fetch("KIOKU_BUNDLE_ID", "ai.kiokurelay.demo"))
+team_id(ENV.fetch("KIOKU_APPLE_TEAM_ID", "UJ293X328U"))

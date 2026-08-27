@@ -1,0 +1,11 @@
+MARKETING_VERSION = 0.1.0
+CURRENT_PROJECT_VERSION = 1
+SWIFT_VERSION = 6.0
+IPHONEOS_DEPLOYMENT_TARGET = 18.0
+ENABLE_USER_SCRIPT_SANDBOXING = YES
+SWIFT_STRICT_CONCURRENCY = complete
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+
+// The current local XCFramework has arm64 device and Apple-silicon Simulator
+// slices. Add x86_64 back when the Rust bridge ships an Intel Simulator slice.
+EXCLUDED_ARCHS[sdk=iphonesimulator*] = x86_64

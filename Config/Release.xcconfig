@@ -1,0 +1,18 @@
+#include "Base.xcconfig"
+
+APP_ENVIRONMENT = release
+OPENAI_API_KEY =
+SHISA_API_KEY =
+NEO4J_HOST =
+NEO4J_USERNAME =
+NEO4J_PASSWORD =
+NEO4J_DATABASE = neo4j
+
+// KIOKU RELAY's App Store Connect team. Automatic signing lets Xcode or the
+// release lane create/download the matching distribution profile.
+DEVELOPMENT_TEAM = UJ293X328U
+CODE_SIGN_STYLE = Automatic
+
+// Optional, ignored local file for the short-lived TestFlight demo credentials.
+// These values are compiled into the app and must be revoked after the demo.
+#include? "ReleaseSecrets.xcconfig"

@@ -1,0 +1,4 @@
+module EdgeBridge {
+    header "EdgeBridge.h"
+    export *
+}

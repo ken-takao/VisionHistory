@@ -1,0 +1,4 @@
+#include "Base.xcconfig"
+#include? "DebugSecrets.xcconfig"
+
+APP_ENVIRONMENT = debug

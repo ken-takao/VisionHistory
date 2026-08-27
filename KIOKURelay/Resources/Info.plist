@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>ja</string>
+	<key>CFBundleDisplayName</key>
+	<string>KIOKU RELAY</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+	</dict>
+	<key>UILaunchScreen</key>
+	<dict/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>目の前の物を端末内の検索可能な記憶として保存するためにカメラを使います。</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>音声で記憶を追加・検索するためにマイクを使います。</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>AppEnvironment</key>
+	<string>$(APP_ENVIRONMENT)</string>
+	<key>OpenAIAPIKey</key>
+	<string>$(OPENAI_API_KEY)</string>
+	<key>ShisaAPIKey</key>
+	<string>$(SHISA_API_KEY)</string>
+	<key>Neo4jHost</key>
+	<string>$(NEO4J_HOST)</string>
+	<key>Neo4jUsername</key>
+	<string>$(NEO4J_USERNAME)</string>
+	<key>Neo4jPassword</key>
+	<string>$(NEO4J_PASSWORD)</string>
+	<key>Neo4jDatabase</key>
+	<string>$(NEO4J_DATABASE)</string>
+</dict>
+</plist>
